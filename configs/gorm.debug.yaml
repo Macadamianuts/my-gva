@@ -1,0 +1,27 @@
+Gorm:              # 基础配置
+  Type: 'mysql'
+  Host: '43.139.20.98'
+  Port: '3306'
+  Config: 'charset=utf8mb4&parseTime=True&loc=Local'
+  Dbname: 'gva'
+  Username: 'root'
+  Password: '123456'
+  MaxIdleCones: 10
+  MaxOpenCones: 100
+  ConnMaxLifetime: 60
+  ConnMaxIdleTime: 24
+  OtherConfig:     # 其他配置
+    LogZap: false
+    Colorful: true
+    LogLevel: 4
+    SlowThreshold: 200
+    IgnoreRecordNotFoundError: false
+  Replicas:       # 替代配置
+    - Host: '43.139.20.98'
+      Port: '3306'
+      Config: ''
+      Dbname: 'gva'
+      Username: 'root'
+      Password: '123456'
+      Data:
+        - "user"

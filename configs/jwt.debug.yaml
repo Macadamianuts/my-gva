@@ -1,0 +1,5 @@
+Jwt:
+  Issuer: 'WWater'
+  SigningKey: 'uuid'
+  BufferAt: 1d
+  ExpiresAt: 7d

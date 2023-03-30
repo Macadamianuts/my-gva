@@ -1,0 +1,10 @@
+Zap:
+  Level: 'info'
+  Prefix: '[gva]'
+  Director: 'logs'
+  Format: 'console'
+  StacktraceKey: 'stacktrace'
+  EncodeLevel: 'LowercaseColorLevelEncoder'
+  ShowLine: true
+  LogInConsole: true
+  MaxAge: 30 # 默认日志存储30天

@@ -1,0 +1,30 @@
+package common
+
+const (
+	SuccessAll          = "获取全部数据成功!"
+	SuccessList         = "获取分页数据成功!"
+	SuccessFirst        = "获取单条数据成功!"
+	SuccessFind         = "获取全部数据成功!"
+	SuccessCreated      = "创建成功!"
+	SuccessUpdated      = "更新成功!"
+	SuccessDeleted      = "删除成功!"
+	SuccessExported     = "导出成功!"
+	SuccessImported     = "导入成功!"
+	SuccessOperation    = "操作成功!"
+	SuccessGetSuccess   = "获取成功!"
+	SuccessBatchDeleted = "批量删除成功!"
+
+	ErrorAll          = "获取全部数据失败!"
+	ErrorList         = "获取分页数据失败!"
+	ErrorListCount    = "获取数据总数失败!"
+	ErrorFind         = "获取全部数据失败!"
+	ErrorFirst        = "获取单条数据失败!"
+	ErrorCreated      = "创建失败!"
+	ErrorUpdated      = "更新失败!"
+	ErrorDeleted      = "删除失败!"
+	ErrorExported     = "导出失败!"
+	ErrorImported     = "导入失败!"
+	ErrorOperation    = "操作失败!"
+	ErrorGetSuccess   = "获取失败!"
+	ErrorBatchDeleted = "批量删除失败!"
+)
