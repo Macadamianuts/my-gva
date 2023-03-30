@@ -1,0 +1,103 @@
+syntax = "proto3";
+
+package oss;
+
+option go_package = "./plugin/oss/config";
+
+message Config {
+  Minio Minio = 1;
+  AliyunOss AliyunOss = 2;
+  HuaWeiObs HuaWeiObs = 3;
+  QiniuKodo QiniuKodo = 4;
+  TencentCos TencentCos = 5;
+  LocalStore LocalStore = 6;
+}
+
+message Minio {
+  // UseSsl 是否使用ssl
+  bool UseSsl = 1;
+  // Path 文件存储文件夹
+  string Path = 2;
+  // Prefix 文件前缀 不填则为空
+  string Prefix = 3;
+  // Token token
+  string Token = 4;
+  // Bucket 存储桶名称
+  string Bucket = 5;
+  // Domain 访问域名
+  string Domain = 6;
+  // Endpoint endpoint
+  string Endpoint = 7;
+  // AccessKey 秘钥AK
+  string AccessKey = 8;
+  // SecretKey 秘钥SK
+  string SecretKey = 9;
+  // ExpirationTime 过期时间
+  string ExpirationTime = 10;
+}
+
+message AliyunOss {
+  // Path 文件存储文件夹
+  string Path = 1;
+  // Prefix 文件前缀 不填则为空
+  string Prefix = 2;
+  // Bucket 存储桶名称
+  string Bucket = 3;
+  // Domain 访问域名
+  string Domain = 4;
+  // Endpoint 地域节点
+  string Endpoint = 5;
+  // AccessKeyId 访问密钥 Id
+  string AccessKeyId = 6;
+  // AccessKeySecret 访问密钥 Secret
+  string AccessKeySecret = 7;
+}
+
+message HuaWeiObs {
+  string path = 1;
+  string bucket = 2;
+  string endpoint = 3;
+  string access_key = 4;
+  string secret_key = 5;
+}
+
+message LocalStore {
+  // Path 存储路径
+  string Path = 1;
+  // Domain 访问路径
+  string Domain = 2;
+}
+
+message QiniuKodo {
+  // Path 文件存储文件夹
+  string Path = 1;
+  // Prefix 文件前缀 不填则为空
+  string Prefix = 2;
+  // Bucket 空间名称
+  string Bucket = 3;
+  // Domain CDN加速域名
+  string Domain = 4;
+  // AccessKey 秘钥AK
+  string AccessKey = 5;
+  // SecretKey 秘钥SK
+  string SecretKey = 6;
+  // UseHttps 是否使用https
+  bool UseHttps = 7;
+  // UseCdnDomains 是否使用cdn加速域名
+  bool UseCdnDomains = 8;
+}
+
+message TencentCos {
+  // Path 文件存储文件夹
+  string Path = 1;
+  // Prefix 文件名前缀
+  string Prefix = 2;
+  // Bucket 桶名
+  string Bucket = 3;
+  // Domain 访问域名
+  string Domain = 4;
+  // SecretKey 访问密钥 Id
+  string SecretId = 5;
+  // SecretKey 访问密钥 Secret
+  string SecretKey = 6;
+}

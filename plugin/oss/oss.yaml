@@ -1,0 +1,82 @@
+Qiniu:
+  # Path 文件存储文件夹
+  Path: 'gva'
+  # Prefix 自定义文件名前缀, 可以不写为空了
+  Prefix: 'oss_'
+  # Bucket 存储桶名称
+  Bucket: 'gva-1'
+  # Domain 访问域名
+  Domain: 'rf5bfe2uo.hn-bkt.clouddn.com'
+  # AccessKey 访问密钥 AccessKey
+  AccessKey: 'eAM1JaXHRJL_-Ue52tYLYw5gijt6r9ORgcG4dmLt'
+  # SecretKey 访问密钥 SecretKey
+  SecretKey: 'GQtW43BUPBoj9HS99fTU7-xsPhQHLI70FvCAMHJ2'
+  # UseHttps 是否使用https
+  UseHttps: false
+  # UseCdnDomains 是否使用cdn域名
+  UseCdnDomains: false
+
+  # local configuration
+LocalStore:
+  path: 'uploads/file' # 访问路径
+  domain: 'uploads/file' # 存储路径
+
+# aliyun oss configuration
+AliyunOss:
+  # Path 文件存储文件夹
+  Path: 'gva'
+  # Prefix 自定义文件名前缀, 可以不写为空了
+  Prefix: 'oss_'
+  # Bucket 存储桶名称
+  Bucket: 'sliver-horn'
+  # Domain 访问域名
+  Domain: 'https://sliver-horn.oss-cn-shenzhen.aliyuncs.com'
+  # Endpoint 地域节点
+  Endpoint: 'oss-cn-shenzhen.aliyuncs.com'
+  # AccessKeyId 访问密钥 Id
+  AccessKeyId: 'LTAI5t7dSHRh2MHhaAo3gSGR'
+  # AccessKeySecret 访问密钥 Secret
+  AccessKeySecret: 'V4dc2lXiaJhGi40e7FcdiaLDDGtQ35'
+
+Minio:
+  # Path 文件存储文件夹
+  Path: "gva"
+  # Prefix 文件前缀 不填则为空
+  Prefix: "oss_"
+  # Token token
+  Token: ""
+  # Bucket 存储桶名称
+  Bucket: "zy_ad_ms"
+  # Domain 访问域名
+  Domain: "http://81.71.16.107:9000"
+  # UseSsl 是否使用ssl
+  UseSsl: false
+  # Endpoint endpoint
+  Endpoint: 81.71.16.107:9000"
+  # AccessKey 秘钥AK
+  AccessKey: "YSKWTZ5JYLW5PA4G98N9"
+  # SecretKey 秘钥SK
+  SecretKey: "B4bQWSBP48yTyfk8ZKZhK5KjBPtHEgbMLfEEuyy8"
+
+# tencent cos configuration
+TencentCos:
+  # Path 文件存储文件夹
+  Path: 'gva'
+  # Prefix 自定义文件名前缀, 可以不写为空了
+  Prefix: 'oss_'
+  # Bucket 存储桶名称
+  Bucket: 'gva-1304136212'
+  # Domain 访问域名
+  Domain: 'https://gva-1304136212.cos.ap-guangzhou.myqcloud.com'
+  # SecretId 访问密钥 Id
+  SecretId: 'AKIDCG6g3B2ez3qMbZGiz0kDQM1QZR5SaGiv'
+  # SecretKey 访问密钥 Secret
+  SecretKey: '0kDPLnLhphKiqvqWTDj5FBuNZU8pJZbP'
+
+# huawei obs configuration
+HuaWeiObs:
+  Path: 'you-path'
+  Bucket: 'you-bucket'
+  Endpoint: 'you-endpoint'
+  AccessKey: 'you-access-key'
+  SecretKey: 'you-secret-key'

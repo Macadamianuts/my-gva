@@ -1,0 +1,10 @@
+syntax = "proto3"; // 指定使用proto的版本
+
+option go_package = "/plugin/pb"; // 生成go文件的包路径
+
+package plugin.examplepb; // proto文件包的路径
+
+message Any {
+  string type_url = 1;
+  bytes value = 2;
+}

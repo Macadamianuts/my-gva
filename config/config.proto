@@ -1,0 +1,184 @@
+syntax = "proto3";
+package config;
+
+option go_package = "./config";
+
+message Config {
+  Jwt Jwt = 1;
+  Zap Zap = 2;
+  Gorm Gorm = 3;
+  Redis Redis = 4;
+  Mongo Mongo = 5;
+  System System = 6;
+  Captcha Captcha = 7;
+  repeated GormList GormList = 8;
+  repeated GormReplica GormReplicas = 9;
+}
+
+// Jwt json web token config
+message Jwt {
+  // Issuer 签发者
+  string Issuer = 1;
+  // SigningKey jwt签名
+  string SigningKey = 2;
+  // BufferAt 缓冲时间
+  string BufferAt = 3;
+  // ExpiresAt 过期时间
+  string ExpiresAt = 4;
+}
+
+// Zap zap logger config
+message Zap {
+  // Level 级别
+  string Level = 1;
+  // Prefix 日志前缀
+  string Prefix = 2;
+  // Format 输出
+  string Format = 3;
+  // Director 日志文件夹
+  string Director = 4;
+  // EncodeLevel 编码级
+  string EncodeLevel = 5;
+  // StacktraceKey 栈名
+  string StacktraceKey = 6;
+  // MaxAge 日志留存时间
+  int64 MaxAge = 7;
+  // ShowLine 显示行
+  bool ShowLine = 8;
+  // LogInConsole 输出控制台
+  bool LogInConsole = 9;
+}
+
+// Redis redis config
+message Redis {
+  // Level 数据库
+  uint64 DB = 1;
+  // Address 地址
+  string Address = 2;
+  // Prefix 用户名
+  string Username = 3;
+  // Password 密码
+  string Password = 4;
+}
+
+// Mongo mongodb config
+message Mongo {
+  // Coll collection name
+  string Coll = 1;
+  // Options mongodb options
+  string Options = 2;
+  // Database database name
+  string Database = 3;
+  // Username 用户名
+  string Username = 4;
+  // Password 密码
+  string Password = 5;
+  // MinPoolSize 最小连接池
+  uint64 MinPoolSize = 6;
+  // MaxPoolSize 最大连接池
+  uint64 MaxPoolSize = 7;
+  // MaxConnIdleTime 最大连接空闲时间
+  int64 SocketTimeoutMS = 8;
+  // SocketTimeoutMS socket超时时间
+  int64 ConnectTimeoutMS = 9;
+  // Host
+  repeated MongoHost Hosts = 10;
+}
+
+// System 系统配置
+message System {
+  // Port 端口值
+  int64 Port = 1;
+  // Language 语言
+  string Language = 2;
+  // UseMultipoint 多点登录拦截
+  bool  UseMultipoint = 3;
+}
+
+// Captcha 验证码配置
+message Captcha {
+  // KeyLong 验证码长度
+  int64 KeyLong = 1;
+  // ImageWidth 图片宽度
+  int64 ImageWidth = 2;
+  // ImageHeight 图片高度
+  int64 ImageHeight = 3;
+  // CacheTimeout 缓存超时时间
+  string CacheTimeout = 4;
+  // ExplosionProof 防爆次数
+  int64 ExplosionProof = 5;
+}
+
+// Host mongodb host
+message MongoHost {
+  // Host ip地址
+  string Host = 1;
+  // Port 端口
+  string Port = 2;
+}
+
+// Gorm gorm database config
+message Gorm {
+  // Type 数据库类型
+  string Type = 1;
+  // Host 数据库地址
+  string Host = 2;
+  // Port 数据库端口
+  int64 Port = 3;
+  // Config 数据库其他配置
+  string Config = 4;
+  // Dbname 数据库名
+  string Dbname = 5;
+  // Username 数据库用户名
+  string Username = 6;
+  // Password 数据库密码
+  string Password = 7;
+  // MaxIdleCones 最大空闲连接数
+  int64 MaxIdleCones = 8;
+  // MaxOpenCones 最大打开连接数
+  int64 MaxOpenCones = 9;
+  // ConnMaxLifetime 连接最大存活时间
+  int64 ConnMaxLifetime = 10;
+  // ConnMaxIdleTime 连接最大空闲时间
+  int64 ConnMaxIdleTime = 11;
+  // Config 其他配置
+  GormConfig OtherConfig = 12;
+}
+
+message GormConfig {
+  // LogZap 日志是否进入zap
+  bool LogZap = 1;
+  // Colorful 是否彩色
+  bool Colorful = 2;
+  // LogMode 日志级别(1:silent,2:error,3:warn,4:info)
+  int64 LogLevel = 3;
+  // SlowThreshold 慢查询阈值(支持秒[s],分[m],时[h],天[d])
+  string SlowThreshold = 4;
+  // IgnoreRecordNotFoundError 忽略记录未找到错误
+  bool IgnoreRecordNotFoundError = 5;
+}
+
+// GormReplica 从库配置
+message GormReplica {
+  // Port 数据库端口
+  int64 Port = 1;
+  // Host 数据库地址
+  string Host = 2;
+  // Config 数据库其他配置
+  string Config = 3;
+  // Dbname 数据库名
+  string Dbname = 4;
+  // Username 数据库用户名
+  string Username = 5;
+  // Password 数据库密码
+  string Password = 6;
+  // Data 绑定数据表
+  repeated string Data = 7;
+}
+
+message GormList {
+  string Type = 1;
+  bool Disable = 2;
+  string AliasName = 3;
+  Gorm Gorm = 4;
+}
