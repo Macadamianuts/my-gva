@@ -1,4 +1,4 @@
-Qiniu:
+QiniuKodo:
   # Path 文件存储文件夹
   Path: 'gva'
   # Prefix 自定义文件名前缀, 可以不写为空了

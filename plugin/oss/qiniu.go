@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"github.com/pkg/errors"
 	"github.com/qiniu/go-sdk/v7/storage"
-	"gva-lbx/global"
+	"gva-lbx/plugin/oss/global"
 	"gva-lbx/plugin/oss/internal"
 	"mime/multipart"
 	"os"
