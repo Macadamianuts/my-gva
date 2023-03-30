@@ -2,6 +2,7 @@ package main
 
 import (
 	"gorm.io/gen"
+	"gva-lbx/app/model"
 	"os"
 	"path/filepath"
 )
@@ -24,7 +25,8 @@ func main() {
 	})
 
 	// 挂在自己的结构体在这里（根据自己的业务而定）
-	g.ApplyBasic()
+	g.ApplyBasic(
+		new(model.JwtBlacklist))
 
 	g.Execute()
 }

@@ -14,6 +14,7 @@ require (
 	github.com/minio/minio-go/v7 v7.0.50
 	github.com/pkg/errors v0.9.1
 	github.com/qiniu/go-sdk/v7 v7.14.0
+	github.com/songzhibin97/gkit v1.2.9
 	github.com/spf13/viper v1.15.0
 	github.com/tencentyun/cos-go-sdk-v5 v0.7.41
 	go.uber.org/zap v1.24.0
