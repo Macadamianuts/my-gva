@@ -26,7 +26,20 @@ func main() {
 
 	// 挂在自己的结构体在这里（根据自己的业务而定）
 	g.ApplyBasic(
-		new(model.JwtBlacklist))
+		new(model.Api),
+		new(model.User),
+		new(model.Menu),
+		new(model.Role),
+		new(model.Casbin),
+		new(model.RolesMenus),
+		new(model.Dictionary),
+		new(model.UsersRoles),
+		new(model.JwtBlacklist),
+		new(model.MenuParameter),
+		new(model.OperationRecord),
+		new(model.RolesMenuButtons),
+		new(model.DictionaryDetail),
+	)
 
 	g.Execute()
 }

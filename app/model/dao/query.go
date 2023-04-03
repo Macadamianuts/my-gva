@@ -16,34 +16,89 @@ import (
 )
 
 var (
-	Q            = new(Query)
-	JwtBlacklist *jwtBlacklist
+	Q                = new(Query)
+	Api              *api
+	Casbin           *casbin
+	Dictionary       *dictionary
+	DictionaryDetail *dictionaryDetail
+	Menu             *menu
+	MenuParameter    *menuParameter
+	OperationRecord  *operationRecord
+	Role             *role
+	RolesMenuButtons *rolesMenuButtons
+	RolesMenus       *rolesMenus
+	User             *user
+	UsersRoles       *usersRoles
 )
 
 func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 	*Q = *Use(db, opts...)
-	JwtBlacklist = &Q.JwtBlacklist
+	Api = &Q.Api
+	Casbin = &Q.Casbin
+	Dictionary = &Q.Dictionary
+	DictionaryDetail = &Q.DictionaryDetail
+	Menu = &Q.Menu
+	MenuParameter = &Q.MenuParameter
+	OperationRecord = &Q.OperationRecord
+	Role = &Q.Role
+	RolesMenuButtons = &Q.RolesMenuButtons
+	RolesMenus = &Q.RolesMenus
+	User = &Q.User
+	UsersRoles = &Q.UsersRoles
 }
 
 func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 	return &Query{
-		db:           db,
-		JwtBlacklist: newJwtBlacklist(db, opts...),
+		db:               db,
+		Api:              newApi(db, opts...),
+		Casbin:           newCasbin(db, opts...),
+		Dictionary:       newDictionary(db, opts...),
+		DictionaryDetail: newDictionaryDetail(db, opts...),
+		Menu:             newMenu(db, opts...),
+		MenuParameter:    newMenuParameter(db, opts...),
+		OperationRecord:  newOperationRecord(db, opts...),
+		Role:             newRole(db, opts...),
+		RolesMenuButtons: newRolesMenuButtons(db, opts...),
+		RolesMenus:       newRolesMenus(db, opts...),
+		User:             newUser(db, opts...),
+		UsersRoles:       newUsersRoles(db, opts...),
 	}
 }
 
 type Query struct {
 	db *gorm.DB
 
-	JwtBlacklist jwtBlacklist
+	Api              api
+	Casbin           casbin
+	Dictionary       dictionary
+	DictionaryDetail dictionaryDetail
+	Menu             menu
+	MenuParameter    menuParameter
+	OperationRecord  operationRecord
+	Role             role
+	RolesMenuButtons rolesMenuButtons
+	RolesMenus       rolesMenus
+	User             user
+	UsersRoles       usersRoles
 }
 
 func (q *Query) Available() bool { return q.db != nil }
 
 func (q *Query) clone(db *gorm.DB) *Query {
 	return &Query{
-		db:           db,
-		JwtBlacklist: q.JwtBlacklist.clone(db),
+		db:               db,
+		Api:              q.Api.clone(db),
+		Casbin:           q.Casbin.clone(db),
+		Dictionary:       q.Dictionary.clone(db),
+		DictionaryDetail: q.DictionaryDetail.clone(db),
+		Menu:             q.Menu.clone(db),
+		MenuParameter:    q.MenuParameter.clone(db),
+		OperationRecord:  q.OperationRecord.clone(db),
+		Role:             q.Role.clone(db),
+		RolesMenuButtons: q.RolesMenuButtons.clone(db),
+		RolesMenus:       q.RolesMenus.clone(db),
+		User:             q.User.clone(db),
+		UsersRoles:       q.UsersRoles.clone(db),
 	}
 }
 
@@ -57,18 +112,51 @@ func (q *Query) WriteDB() *Query {
 
 func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 	return &Query{
-		db:           db,
-		JwtBlacklist: q.JwtBlacklist.replaceDB(db),
+		db:               db,
+		Api:              q.Api.replaceDB(db),
+		Casbin:           q.Casbin.replaceDB(db),
+		Dictionary:       q.Dictionary.replaceDB(db),
+		DictionaryDetail: q.DictionaryDetail.replaceDB(db),
+		Menu:             q.Menu.replaceDB(db),
+		MenuParameter:    q.MenuParameter.replaceDB(db),
+		OperationRecord:  q.OperationRecord.replaceDB(db),
+		Role:             q.Role.replaceDB(db),
+		RolesMenuButtons: q.RolesMenuButtons.replaceDB(db),
+		RolesMenus:       q.RolesMenus.replaceDB(db),
+		User:             q.User.replaceDB(db),
+		UsersRoles:       q.UsersRoles.replaceDB(db),
 	}
 }
 
 type queryCtx struct {
-	JwtBlacklist IJwtBlacklistDo
+	Api              IApiDo
+	Casbin           ICasbinDo
+	Dictionary       IDictionaryDo
+	DictionaryDetail IDictionaryDetailDo
+	Menu             IMenuDo
+	MenuParameter    IMenuParameterDo
+	OperationRecord  IOperationRecordDo
+	Role             IRoleDo
+	RolesMenuButtons IRolesMenuButtonsDo
+	RolesMenus       IRolesMenusDo
+	User             IUserDo
+	UsersRoles       IUsersRolesDo
 }
 
 func (q *Query) WithContext(ctx context.Context) *queryCtx {
 	return &queryCtx{
-		JwtBlacklist: q.JwtBlacklist.WithContext(ctx),
+		Api:              q.Api.WithContext(ctx),
+		Casbin:           q.Casbin.WithContext(ctx),
+		Dictionary:       q.Dictionary.WithContext(ctx),
+		DictionaryDetail: q.DictionaryDetail.WithContext(ctx),
+		Menu:             q.Menu.WithContext(ctx),
+		MenuParameter:    q.MenuParameter.WithContext(ctx),
+		OperationRecord:  q.OperationRecord.WithContext(ctx),
+		Role:             q.Role.WithContext(ctx),
+		RolesMenuButtons: q.RolesMenuButtons.WithContext(ctx),
+		RolesMenus:       q.RolesMenus.WithContext(ctx),
+		User:             q.User.WithContext(ctx),
+		UsersRoles:       q.UsersRoles.WithContext(ctx),
 	}
 }
 
