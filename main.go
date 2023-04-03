@@ -14,4 +14,7 @@ func main() {
 		return
 	}
 	core.Redis.Initialization()
+	core.Casbin.Initialization()
+	// 引擎初始化
+	core.Engine.Initialization()
 }
