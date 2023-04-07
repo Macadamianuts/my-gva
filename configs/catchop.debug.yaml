@@ -1,0 +1,6 @@
+Captcha:
+  KeyLong: 6
+  ImageWidth: 240
+  ImageHeight: 80
+  CacheTimeout: '60s' # ExplosionProof大于0时才生效
+  ExplosionProof: 0 # 0代表一直开启，大于0代表限制次数
