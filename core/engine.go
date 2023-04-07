@@ -41,7 +41,6 @@ func (c *_engine) Initialization() {
 		router.NewUserRouter(private).Init()
 		router.NewDictionaryRouter(private).Init()
 		router.NewDictionaryDetailRouter(private).Init()
-		router.NewUploadRouter(private).Init()
 	}
 
 	Plugin.Initialization(public, private)
