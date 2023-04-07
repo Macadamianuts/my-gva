@@ -28,6 +28,5 @@ func (r *Api) Init() {
 		group.PUT("update", response.Handler()(api.Api.Update))
 		group.DELETE("delete", response.Handler()(api.Api.Delete))
 		group.DELETE("deletes", response.Handler()(api.Api.Deletes))
-
 	}
 }
