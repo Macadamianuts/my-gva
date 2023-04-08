@@ -2,6 +2,7 @@ package oss
 
 import (
 	"context"
+	"fmt"
 	"github.com/pkg/errors"
 	"go.uber.org/zap"
 	"gva-lbx/plugin/oss/global"
@@ -19,18 +20,19 @@ type local struct{}
 func (l *local) Upload(ctx context.Context, name string, reader io.Reader) (filepath string, filename string, err error) {
 	var one sync.Once
 	one.Do(func() {
-		_, err = os.Stat(global.Config.LocalStore.Path)
+		fmt.Println(global.Config)
+		_, err = os.Stat(global.Config.LocalStorage.Path)
 		if errors.Is(err, fs.ErrNotExist) {
-			err = os.MkdirAll(global.Config.LocalStore.Path, os.ModePerm)
+			err = os.MkdirAll(global.Config.LocalStorage.Path, os.ModePerm)
 			if err != nil {
-				zap.L().Error("[oss][local][dir:%s]创建文件夹失败!", zap.String("dir", global.Config.LocalStore.Path))
+				zap.L().Error("[oss][local][dir:%s]创建文件夹失败!", zap.String("dir", global.Config.LocalStorage.Path))
 			}
 		}
 	})
 
-	filename = global.Config.LocalStore.Filename(name)
-	key := global.Config.LocalStore.FileKey(filename)
-	filepath = global.Config.LocalStore.Filepath(key)
+	filename = global.Config.LocalStorage.Filename(name)
+	key := global.Config.LocalStorage.FileKey(filename)
+	filepath = global.Config.LocalStorage.Filepath(key)
 	var out *os.File
 	out, err = os.Create(key)
 	if err != nil {
@@ -48,7 +50,7 @@ func (l *local) Upload(ctx context.Context, name string, reader io.Reader) (file
 }
 
 func (l *local) DeleteFile(ctx context.Context, filename string) error {
-	key := global.Config.LocalStore.FileKey(filename)
+	key := global.Config.LocalStorage.FileKey(filename)
 	err := os.Remove(key)
 	if err != nil {
 		return errors.Wrapf(err, "[oss][local][key:%s]删除文件失败!", key)

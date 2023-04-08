@@ -11,8 +11,6 @@ type GormId struct {
 }
 
 // ToRole GormId 转 Role
-//
-//	Author [SliverHorn](https://github.com/SliverHorn)
 func (r *GormId) ToRole() Role {
 	return Role{RoleId: r.Id}
 }

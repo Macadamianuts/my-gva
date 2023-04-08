@@ -5,7 +5,7 @@ import (
 	"github.com/golang-jwt/jwt/v4"
 	"go.uber.org/zap"
 	"gva-lbx/app/service"
-	"gva-lbx/common"
+	jwt2 "gva-lbx/component/jwt"
 	"gva-lbx/global"
 	"gva-lbx/response"
 	"net/http"
@@ -27,7 +27,7 @@ func Jwt() gin.HandlerFunc {
 			c.Abort()
 			return
 		}
-		_jwt := common.NewJwt()
+		_jwt := jwt2.NewJwt()
 		claims, err := _jwt.Parse(token)
 		if err != nil {
 			c.JSON(http.StatusOK, response.Response{Error: err})

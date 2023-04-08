@@ -5,6 +5,7 @@ import (
 	"gva-lbx/app/model/request"
 	"gva-lbx/app/service"
 	"gva-lbx/common"
+	"gva-lbx/component/jwt"
 	"gva-lbx/response"
 	"net/http"
 )
@@ -71,7 +72,7 @@ func (u *user) First(c *gin.Context) response.Response {
 // @Router  /user/self/first [post]
 func (u *user) FirstSelf(c *gin.Context) response.Response {
 	var info request.UserFirst
-	claims, err := common.NewClaimsByGinContext(c)
+	claims, err := jwt.NewClaimsByGinContext(c)
 	if err != nil {
 		return response.Response{Code: http.StatusBadRequest, Error: err}
 	}
@@ -122,7 +123,7 @@ func (u *user) UpdateSelf(c *gin.Context) response.Response {
 	if err != nil {
 		return response.Response{Code: http.StatusBadRequest, Error: err}
 	}
-	claims, err := common.NewClaimsByGinContext(c)
+	claims, err := jwt.NewClaimsByGinContext(c)
 	if err != nil {
 		return response.Response{Code: http.StatusBadRequest, Error: err}
 	}

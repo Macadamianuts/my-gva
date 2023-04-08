@@ -3,7 +3,7 @@ package middleware
 import (
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
-	"gva-lbx/common"
+	"gva-lbx/component/jwt"
 	"gva-lbx/global"
 	"gva-lbx/response"
 	"net/http"
@@ -11,7 +11,7 @@ import (
 
 func Casbin() gin.HandlerFunc {
 	return func(context *gin.Context) {
-		claims, _ := common.NewClaimsByGinContext(context)
+		claims, _ := jwt.NewClaimsByGinContext(context)
 		path := context.Request.URL.Path // 获取请求的PATH
 		subject := claims.Subject        // 获取用户的角色
 		method := context.Request.Method // 获取请求方法
