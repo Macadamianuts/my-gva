@@ -1,0 +1,87 @@
+AliyunOss:
+  # Path 文件存储文件夹
+  Path: 'gva'
+  # Prefix 自定义文件名前缀, 可以不写为空了
+  Prefix: 'oss_'
+  # Bucket 存储桶名称
+  Bucket: 'wwater'
+  # Domain 访问域名
+  Domain: ''
+  # Endpoint 地域节点
+  Endpoint: ''
+  # AccessKeyId 访问密钥 Id
+  AccessKeyId: ''
+  # AccessKeySecret 访问密钥 Secret
+  AccessKeySecret: ''
+
+# local configuration
+LocalStorage:
+  # Path 存储路径
+  Path: 'files'
+  # Domain 访问路径
+  Domain: 'http://127.0.0.1:8888'
+
+Minio:
+  # Path 文件存储文件夹
+  Path: "gva"
+  # Prefix 文件前缀 不填则为空
+  Prefix: "oss_"
+  # Token token
+  Token: ""
+  # Bucket 存储桶名称
+  Bucket: "gva_minio"
+  # Domain 访问域名
+  Domain: ""
+  # UseSsl 是否使用ssl
+  UseSsl: false
+  # Endpoint endpoint
+  Endpoint: ""
+  # AccessKey 秘钥AK
+  AccessKey: ""
+  # SecretKey 秘钥SK
+  SecretKey: ""
+  # ExpirationTime 过期时间 不能大于7d
+  ExpirationTime: "7d"
+
+
+# qiniu configuration
+QiniuKodo:
+  # Path 文件存储文件夹
+  Path: 'gva'
+  # Prefix 自定义文件名前缀, 可以不写为空了
+  Prefix: 'oss_'
+  # Bucket 存储桶名称
+  Bucket: 'gva_kodo'
+  # Domain 访问域名
+  Domain: ''
+  # AccessKey 访问密钥 AccessKey
+  AccessKey: ''
+  # SecretKey 访问密钥 SecretKey
+  SecretKey: ''
+  # UseHttps 是否使用https
+  UseHttps: false
+  # UseCdnDomains 是否使用cdn域名
+  UseCdnDomains: false
+
+# tencent cos configuration
+TencentCos:
+  # Path 文件存储文件夹
+  Path: 'gva'
+  # Prefix 自定义文件名前缀, 可以不写为空了
+  Prefix: 'oss_'
+  # Bucket 存储桶名称
+  Bucket: 'gva'
+  # Domain 访问域名
+  Domain: ''
+  # SecretId 访问密钥 Id
+  SecretId: ''
+  # SecretKey 访问密钥 Secret
+  SecretKey: ''
+
+# huawei obs configuration
+HuaWeiObs:
+  Path: 'you-path'
+  Bucket: 'you-bucket'
+  Endpoint: 'you-endpoint'
+  AccessKey: 'you-access-key'
+  SecretKey: 'you-secret-key'
