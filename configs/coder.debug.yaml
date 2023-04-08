@@ -1,0 +1,16 @@
+Web:
+  Root: '~/Go/A5001/gva-lbx/web' # web 路径
+  Api: 'api'
+  Form: 'form'
+  View: 'view'
+  Plugin: 'plugin'
+Server:
+  Root: '~/Go/A5001/gva-lbx/serve' # server 路径
+  Api: 'api'
+  Core: 'core'
+  Model: 'model'
+  Plugin: 'plugin'
+  Router: 'router'
+  Request: 'request'
+  Service: 'service'
+  Template: 'template'
