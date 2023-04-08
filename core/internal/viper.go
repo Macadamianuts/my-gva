@@ -13,8 +13,6 @@ var Viper = new(_viper)
 type _viper struct{}
 
 // GetFiles 获取配置文件夹信息
-//
-//	Author [SliverHorn](https://github.com/SliverHorn)
 func (i *_viper) GetFiles() ([]os.DirEntry, error) {
 	entries, err := os.ReadDir(ConfigPath)
 	if err != nil {
@@ -24,8 +22,6 @@ func (i *_viper) GetFiles() ([]os.DirEntry, error) {
 }
 
 // GetFile 获取文件信息
-//
-//	Author [SliverHorn](https://github.com/SliverHorn)
 func (i *_viper) GetFile(filename string) io.Reader {
 	file, err := os.Open(filepath.Join(ConfigPath, filename))
 	if err != nil {

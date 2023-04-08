@@ -10,6 +10,7 @@ import (
 	"gva-lbx/app/model/request"
 	"gva-lbx/app/model/response"
 	"gva-lbx/common"
+	"gva-lbx/component/jwt"
 	"gva-lbx/global"
 )
 
@@ -18,8 +19,6 @@ var User = new(user)
 type user struct{}
 
 // Create 创建用户
-//
-//	Author [SliverHorn](https://github.com/SliverHorn)
 func (s *user) Create(ctx context.Context, info request.UserCreate) error {
 	query := dao.Q.WithContext(ctx).User
 	_, err := query.Where(dao.User.Username.Eq(info.Username)).First()
@@ -39,8 +38,6 @@ func (s *user) Create(ctx context.Context, info request.UserCreate) error {
 }
 
 // Login 登录
-//
-//	Author [SliverHorn](https://github.com/SliverHorn)
 func (s *user) Login(ctx context.Context, info request.UserLogin) (*response.UserLogin, error) {
 	query := dao.Q.WithContext(ctx).User
 	entity, err := query.Where(dao.User.Username.Eq(info.Username)).First()
@@ -56,8 +53,6 @@ func (s *user) Login(ctx context.Context, info request.UserLogin) (*response.Use
 }
 
 // First 获取用户信息
-//
-//	Author [SliverHorn](https://github.com/SliverHorn)
 func (s *user) First(ctx context.Context, info request.UserFirst) (entity *model.User, err error) {
 	query := dao.Q.WithContext(ctx).User
 	entity, err = query.Scopes(info.First()).Preload(dao.User.Role).Preload(dao.User.Roles).First()
@@ -69,8 +64,6 @@ func (s *user) First(ctx context.Context, info request.UserFirst) (entity *model
 }
 
 // Update 设置用户信息
-//
-//	Author [SliverHorn](https://github.com/SliverHorn)
 func (s *user) Update(ctx context.Context, info request.UserUpdate) error {
 	query := dao.Q.WithContext(ctx).User
 	update := info.Update()
@@ -82,8 +75,6 @@ func (s *user) Update(ctx context.Context, info request.UserUpdate) error {
 }
 
 // ResetPassword 重置密码
-//
-//	Author [SliverHorn](https://github.com/SliverHorn)
 func (s *user) ResetPassword(ctx context.Context, info common.GormId) error {
 	query := dao.Q.WithContext(ctx).User
 	first, err := query.Where(dao.User.ID.Eq(info.Id)).First()
@@ -103,8 +94,6 @@ func (s *user) ResetPassword(ctx context.Context, info common.GormId) error {
 }
 
 // ChangePassword 修改密码
-//
-//	Author [SliverHorn](https://github.com/SliverHorn)
 func (s *user) ChangePassword(ctx context.Context, info request.UserChangePassword) error {
 	query := dao.Q.WithContext(ctx).User
 	first, err := query.WithContext(ctx).Where(dao.User.ID.Eq(info.UserId)).First()
@@ -128,8 +117,6 @@ func (s *user) ChangePassword(ctx context.Context, info request.UserChangePasswo
 }
 
 // SetRole 设置用户角色
-//
-//	Author [SliverHorn](https://github.com/SliverHorn)
 func (s *user) SetRole(ctx context.Context, info request.UserSetRole) error {
 	_, err := dao.Q.WithContext(ctx).UsersRoles.Where(dao.UsersRoles.UserId.Eq(info.UserId), dao.UsersRoles.RoleId.Eq(info.RoleId)).First()
 	if errors.Is(err, gorm.ErrRecordNotFound) {
@@ -144,8 +131,6 @@ func (s *user) SetRole(ctx context.Context, info request.UserSetRole) error {
 }
 
 // SetRoles 设置用户多角色
-//
-//	Author [SliverHorn](https://github.com/SliverHorn)
 func (s *user) SetRoles(ctx context.Context, info request.UserSetRoles) error {
 	entity, err := dao.Q.WithContext(ctx).User.Where(dao.User.ID.Eq(info.UserId)).Preload(dao.User.Roles).First()
 	if errors.Is(err, gorm.ErrRecordNotFound) {
@@ -169,8 +154,6 @@ func (s *user) SetRoles(ctx context.Context, info request.UserSetRoles) error {
 }
 
 // Delete 删除用户
-//
-//	Author [SliverHorn](https://github.com/SliverHorn)
 func (s *user) Delete(ctx context.Context, info common.GormId) error {
 	return dao.Q.Transaction(func(tx *dao.Query) error {
 		_, err := tx.User.WithContext(ctx).Where(dao.User.ID.Eq(info.Id)).Delete()
@@ -186,8 +169,6 @@ func (s *user) Delete(ctx context.Context, info common.GormId) error {
 }
 
 // Deletes 批量删除用户
-//
-//	Author [SliverHorn](https://github.com/SliverHorn)
 func (s *user) Deletes(ctx context.Context, info common.GormIds) error {
 	return dao.Q.Transaction(func(tx *dao.Query) error {
 		_, err := tx.User.WithContext(ctx).Where(dao.User.ID.In(info.Ids...)).Delete()
@@ -203,8 +184,6 @@ func (s *user) Deletes(ctx context.Context, info common.GormIds) error {
 }
 
 // List 获取用户列表数据
-//
-//	Author [SliverHorn](https://github.com/SliverHorn)
 func (s *user) List(ctx context.Context, info request.UserSearch) (entities []*model.User, total int64, err error) {
 	query := dao.Q.WithContext(ctx).User
 	query = query.Scopes(info.Search())
@@ -220,12 +199,10 @@ func (s *user) List(ctx context.Context, info request.UserSearch) (entities []*m
 }
 
 // Token 用户登录成功获取的token
-//
-//	Author [SliverHorn](https://github.com/SliverHorn)
 func (s *user) Token(ctx context.Context, user *model.User) (*response.UserLogin, error) {
 	base := request.NewClaims(user)
-	claims := common.NewClaims(base)
-	token, err := common.NewJwt().Create(claims)
+	claims := jwt.NewClaims(base)
+	token, err := jwt.NewJwt().Create(claims)
 	if err != nil {
 		return nil, err
 	}

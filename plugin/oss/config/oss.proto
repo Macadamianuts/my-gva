@@ -10,7 +10,7 @@ message Config {
   HuaWeiObs HuaWeiObs = 3;
   QiniuKodo QiniuKodo = 4;
   TencentCos TencentCos = 5;
-  LocalStore LocalStore = 6;
+  LocalStorage LocalStorage = 6;
 }
 
 message Minio {
@@ -61,7 +61,7 @@ message HuaWeiObs {
   string secret_key = 5;
 }
 
-message LocalStore {
+message LocalStorage {
   // Path 存储路径
   string Path = 1;
   // Domain 访问路径

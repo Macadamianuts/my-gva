@@ -21,6 +21,7 @@ var (
 	Casbin           *casbin
 	Dictionary       *dictionary
 	DictionaryDetail *dictionaryDetail
+	JwtBlacklist     *jwtBlacklist
 	Menu             *menu
 	MenuParameter    *menuParameter
 	OperationRecord  *operationRecord
@@ -37,6 +38,7 @@ func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 	Casbin = &Q.Casbin
 	Dictionary = &Q.Dictionary
 	DictionaryDetail = &Q.DictionaryDetail
+	JwtBlacklist = &Q.JwtBlacklist
 	Menu = &Q.Menu
 	MenuParameter = &Q.MenuParameter
 	OperationRecord = &Q.OperationRecord
@@ -54,6 +56,7 @@ func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 		Casbin:           newCasbin(db, opts...),
 		Dictionary:       newDictionary(db, opts...),
 		DictionaryDetail: newDictionaryDetail(db, opts...),
+		JwtBlacklist:     newJwtBlacklist(db, opts...),
 		Menu:             newMenu(db, opts...),
 		MenuParameter:    newMenuParameter(db, opts...),
 		OperationRecord:  newOperationRecord(db, opts...),
@@ -72,6 +75,7 @@ type Query struct {
 	Casbin           casbin
 	Dictionary       dictionary
 	DictionaryDetail dictionaryDetail
+	JwtBlacklist     jwtBlacklist
 	Menu             menu
 	MenuParameter    menuParameter
 	OperationRecord  operationRecord
@@ -91,6 +95,7 @@ func (q *Query) clone(db *gorm.DB) *Query {
 		Casbin:           q.Casbin.clone(db),
 		Dictionary:       q.Dictionary.clone(db),
 		DictionaryDetail: q.DictionaryDetail.clone(db),
+		JwtBlacklist:     q.JwtBlacklist.clone(db),
 		Menu:             q.Menu.clone(db),
 		MenuParameter:    q.MenuParameter.clone(db),
 		OperationRecord:  q.OperationRecord.clone(db),
@@ -117,6 +122,7 @@ func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 		Casbin:           q.Casbin.replaceDB(db),
 		Dictionary:       q.Dictionary.replaceDB(db),
 		DictionaryDetail: q.DictionaryDetail.replaceDB(db),
+		JwtBlacklist:     q.JwtBlacklist.replaceDB(db),
 		Menu:             q.Menu.replaceDB(db),
 		MenuParameter:    q.MenuParameter.replaceDB(db),
 		OperationRecord:  q.OperationRecord.replaceDB(db),
@@ -133,6 +139,7 @@ type queryCtx struct {
 	Casbin           ICasbinDo
 	Dictionary       IDictionaryDo
 	DictionaryDetail IDictionaryDetailDo
+	JwtBlacklist     IJwtBlacklistDo
 	Menu             IMenuDo
 	MenuParameter    IMenuParameterDo
 	OperationRecord  IOperationRecordDo
@@ -149,6 +156,7 @@ func (q *Query) WithContext(ctx context.Context) *queryCtx {
 		Casbin:           q.Casbin.WithContext(ctx),
 		Dictionary:       q.Dictionary.WithContext(ctx),
 		DictionaryDetail: q.DictionaryDetail.WithContext(ctx),
+		JwtBlacklist:     q.JwtBlacklist.WithContext(ctx),
 		Menu:             q.Menu.WithContext(ctx),
 		MenuParameter:    q.MenuParameter.WithContext(ctx),
 		OperationRecord:  q.OperationRecord.WithContext(ctx),
