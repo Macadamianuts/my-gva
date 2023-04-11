@@ -14,7 +14,6 @@ var Embed = new(_embed)
 type _embed struct{}
 
 // Restore 把 embed.FS 持久化文件到二进制运行的当前文件夹中
-
 func Restore(files ...embed.FS) {
 	for i := 0; i < len(files); i++ {
 		Embed.directory(files[i], ".")
@@ -22,8 +21,6 @@ func Restore(files ...embed.FS) {
 }
 
 // directory
-
-// Author [WangLeonard](https://github.com/WangLeonard)
 func (e *_embed) directory(files embed.FS, dir string) {
 	entries, err := files.ReadDir(dir)
 	if err != nil {
@@ -47,8 +44,6 @@ func (e *_embed) directory(files embed.FS, dir string) {
 }
 
 // file
-
-// Author [WangLeonard](https://github.com/WangLeonard)
 func (e *_embed) file(efs embed.FS, path string, entry fs.DirEntry) {
 	if entry.IsDir() { // 文件夹
 		e.directory(efs, path)

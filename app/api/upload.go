@@ -7,6 +7,7 @@ import (
 	"net/http"
 )
 
+// UploadFile 文件上传api
 func UploadFile(c *gin.Context) response.Response {
 	_, header, err := c.Request.FormFile("file")
 	if err != nil {

@@ -19,10 +19,12 @@ var Qiniu = new(qiniu)
 
 type qiniu struct{}
 
+// Filepath 文件路径
 func (q *qiniu) Filepath(key string) string {
 	return path.Join(global.Config.QiniuKodo.Domain, key)
 }
 
+// Filename 文件名称
 func (q *qiniu) Filename(filename string) string {
 	if global.Config.TencentCos.Prefix == "" {
 		return fmt.Sprintf("%d_%s", time.Now().Local().Unix(), filename)
@@ -30,6 +32,7 @@ func (q *qiniu) Filename(filename string) string {
 	return fmt.Sprintf("%s%d_%s", global.Config.QiniuKodo.Prefix, time.Now().Local().Unix(), filename)
 }
 
+// FileKey 文件key
 func (q *qiniu) FileKey(filename string) string {
 	return path.Join(global.Config.QiniuKodo.Path, filename)
 }

@@ -7,6 +7,7 @@ import (
 	"os"
 )
 
+// Oss 接口
 type Oss interface {
 	// DeleteFile 根据key删除文件
 	DeleteFile(ctx context.Context, filename string) error
@@ -16,6 +17,7 @@ type Oss interface {
 	UploadByHeader(ctx context.Context, header *multipart.FileHeader) (filepath string, filename string, err error)
 }
 
+// Plus 接口
 type Plus interface {
 	Oss
 	// Upload 通过 io.Reader 上传文件到oss

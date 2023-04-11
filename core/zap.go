@@ -14,6 +14,7 @@ var Zap = new(_zap)
 
 type _zap struct{}
 
+// Initialization 日志初始化
 func (c *_zap) Initialization() {
 	ok, _ := utils.Directory.PathExists(global.Config.Zap.Director)
 	if !ok { // 判断是否有 global.Config.Zap.Director 文件夹

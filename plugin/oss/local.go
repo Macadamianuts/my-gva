@@ -17,6 +17,7 @@ var Local = new(local)
 
 type local struct{}
 
+// Upload 上传文件
 func (l *local) Upload(ctx context.Context, name string, reader io.Reader) (filepath string, filename string, err error) {
 	var one sync.Once
 	one.Do(func() {
@@ -49,6 +50,7 @@ func (l *local) Upload(ctx context.Context, name string, reader io.Reader) (file
 	return filepath, filename, nil
 }
 
+// DeleteFile 删除文件
 func (l *local) DeleteFile(ctx context.Context, filename string) error {
 	key := global.Config.LocalStorage.FileKey(filename)
 	err := os.Remove(key)
@@ -58,6 +60,7 @@ func (l *local) DeleteFile(ctx context.Context, filename string) error {
 	return nil
 }
 
+// UploadByFile .
 func (l *local) UploadByFile(ctx context.Context, file *os.File) (filepath string, filename string, err error) {
 	defer func() { // 接收文件流 defer 关闭
 		_ = file.Close()
@@ -65,6 +68,7 @@ func (l *local) UploadByFile(ctx context.Context, file *os.File) (filepath strin
 	return l.Upload(ctx, file.Name(), file)
 }
 
+// UploadByHeader .
 func (l *local) UploadByHeader(ctx context.Context, header *multipart.FileHeader) (filepath string, filename string, err error) {
 	var file multipart.File
 	file, err = header.Open()

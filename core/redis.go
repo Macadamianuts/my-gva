@@ -12,8 +12,6 @@ var Redis = new(_redis)
 type _redis struct{}
 
 // Initialization 初始化
-//
-//	Author [SliverHorn](https://github.com/SliverHorn)
 func (c *_redis) Initialization() {
 	client := redis.NewClient(&redis.Options{
 		Addr:     global.Config.Redis.Address,

@@ -42,8 +42,6 @@ func (c *gormMysql) Initialization(config *config.Gorm) (*gorm.DB, error) {
 }
 
 // Plugin 读写分离插件
-//
-//	Author [SliverHorn](https://github.com/SliverHorn)
 func (c *gormMysql) Plugin(replicas []*config.GormReplica, config *config.Gorm) gorm.Plugin {
 	length := len(replicas)
 	plugin := dbresolver.Register(dbresolver.Config{

@@ -9,6 +9,7 @@ import (
 	"net/http"
 )
 
+// Casbin 权限分配
 func Casbin() gin.HandlerFunc {
 	return func(context *gin.Context) {
 		claims, _ := jwt.NewClaimsByGinContext(context)

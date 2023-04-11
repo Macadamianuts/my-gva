@@ -14,6 +14,7 @@ func (o *plugin) Menus() []model.Menu {
 	return []model.Menu{}
 }
 
+// Viper global.Config赋值
 func (o *plugin) Viper() any {
 	return &global.Config
 }

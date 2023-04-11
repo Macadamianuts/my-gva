@@ -16,8 +16,6 @@ var Engine = new(_engine)
 type _engine struct{}
 
 // Initialization 引擎初始化
-//
-//	Author [SliverHorn](https://github.com/SliverHorn)
 func (c *_engine) Initialization() {
 	engine := gin.Default()
 

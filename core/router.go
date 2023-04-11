@@ -19,8 +19,6 @@ var Router = new(_router)
 type _router struct{}
 
 // Initialization 初始化
-//
-//	Author [SliverHorn](https://github.com/SliverHorn)
 func (r *_router) Initialization(engine *gin.Engine) {
 	parser := swag.New()
 	err := parser.ParseAPIMultiSearchDir([]string{"."}, "main.go", 0)

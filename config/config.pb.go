@@ -911,6 +911,7 @@ type GormConfig struct {
 	IgnoreRecordNotFoundError bool `protobuf:"varint,5,opt,name=IgnoreRecordNotFoundError,proto3" json:"IgnoreRecordNotFoundError,omitempty"`
 }
 
+// Reset 重置
 func (x *GormConfig) Reset() {
 	*x = GormConfig{}
 	if protoimpl.UnsafeEnabled {
@@ -943,6 +944,7 @@ func (*GormConfig) Descriptor() ([]byte, []int) {
 	return file_config_config_proto_rawDescGZIP(), []int{9}
 }
 
+// 获取日志
 func (x *GormConfig) GetLogZap() bool {
 	if x != nil {
 		return x.LogZap
