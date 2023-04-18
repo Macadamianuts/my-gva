@@ -1,6 +1,6 @@
 Gorm:              # 基础配置
   Type: 'mysql'
-  Host: '43.139.20.98'
+  Host: '127.0.0.1'
   Port: '3306'
   Config: 'charset=utf8mb4&parseTime=True&loc=Local'
   Dbname: 'gva'
@@ -17,7 +17,7 @@ Gorm:              # 基础配置
     SlowThreshold: 200
     IgnoreRecordNotFoundError: false
   Replicas:       # 替代配置
-    - Host: '43.139.20.98'
+    - Host: '127.0.0.1'
       Port: '3306'
       Config: ''
       Dbname: 'gva'

@@ -27,8 +27,6 @@ type User struct {
 }
 
 // CompareHashAndPassword 密码检查 false 校验失败, true 校验成功
-//
-//	Author [SliverHorn](https://github.com/SliverHorn)
 func (u *User) CompareHashAndPassword(password string) error {
 	err := bcrypt.CompareHashAndPassword([]byte(u.Password), []byte(password))
 	if err != nil {
@@ -38,8 +36,6 @@ func (u *User) CompareHashAndPassword(password string) error {
 }
 
 // EncryptedPassword 加密密码
-//
-//	Author [SliverHorn](https://github.com/SliverHorn)
 func (u *User) EncryptedPassword() error {
 	password, err := bcrypt.GenerateFromPassword([]byte(u.Password), bcrypt.DefaultCost)
 	if err != nil {
@@ -50,8 +46,6 @@ func (u *User) EncryptedPassword() error {
 }
 
 // TableName 自定义表名
-//
-//	Author [SliverHorn](https://github.com/SliverHorn)
 func (u *User) TableName() string {
 	return "system_users"
 }

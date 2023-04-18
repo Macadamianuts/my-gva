@@ -5,6 +5,8 @@ import (
 	"go.uber.org/zap"
 	"gorm.io/gorm"
 	"gva-lbx/app/model"
+	"gva-lbx/app/model/dao"
+	"gva-lbx/app/service"
 	"gva-lbx/global"
 )
 
@@ -30,8 +32,8 @@ func (c *_gorm) Initialization() error {
 	}
 	global.Db = db
 	c.AutoMigrate()
-	//dao.SetDefault(db)
-	//service.Jwt.Load()
+	dao.SetDefault(db)
+	service.Jwt.Load()
 	return nil
 }
 

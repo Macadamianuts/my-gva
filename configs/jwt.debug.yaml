@@ -1,5 +1,5 @@
 Jwt:
   Issuer: 'WWater'
-  SigningKey: 'uuid'
+  SigningKey: 'WWater write go claim'
   BufferAt: 1d
   ExpiresAt: 7d
