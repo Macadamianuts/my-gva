@@ -3,9 +3,9 @@ Gorm:              # 基础配置
   Host: '127.0.0.1'
   Port: '3306'
   Config: 'charset=utf8mb4&parseTime=True&loc=Local'
-  Dbname: 'gva'
-  Username: 'root'
-  Password: '123456'
+  Dbname: 'dbname' # 数据库名
+  Username: 'username' # 用户名
+  Password: 'password' # 密码
   MaxIdleCones: 10
   MaxOpenCones: 100
   ConnMaxLifetime: 60
